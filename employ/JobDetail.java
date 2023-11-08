@@ -151,3 +151,14 @@ class UpdateJob {
 }
 
 /************************ To Exit details of Job *********************/
+
+class Exit {
+  public void exit() {
+    System.out.println("\n*****************************************");
+    System.out.println("\t\t  Thank you for Using my Application");
+    System.out.println("\t\t\t  Have a Nice Day");
+    System.out.println("\n*****************************************");
+    System.out.println("\t\t\t    ~$ Robin Benitez");
+    System.exit(0);
+  }
+}
