@@ -98,7 +98,7 @@ public class JobDetail {
     }
   }
 
-  /************************ To Show details of Employee *********************/
+  /************************ To Show details of Job *********************/
 
   class JobShow {
     public void viewFile(String s) throws Exception {
@@ -113,4 +113,21 @@ public class JobDetail {
   }
 }
 
-/************************ To Delete details of Employee *********************/
+/************************ To Delete details of Job *********************/
+
+class DeleteJob {
+  public void deleteFile(String ID) {
+    File file = new File("file" + ID + ".txt");
+    if (file.exists()) {
+      if (file.delete()) {
+        System.out.println("\nEmployee has been Deleted: )\n");
+      } else {
+        System.out.println("\nFailed to Delete Employee.\n");
+      }
+    } else {
+      System.out.println("\nEmployee does not exist.\n");
+    }
+  }
+}
+
+/************************ To Update details of Job *********************/
