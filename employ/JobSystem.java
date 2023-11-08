@@ -5,8 +5,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Scanner;
-import employ.JobDetail;
-import java.util.Scanner;
 
 /******************************** MENU ****************************/
 
@@ -29,209 +27,181 @@ class MainMenu {
 /************************ To add details of the Job *********************/
 
 class AddJob {
-  public void createFile() {
-    Scanner sc = Scanner(System.in);
-
-    JobSystem job = new JobSystem();
-    job.getInfo();
+  public void add() {
+    Scanner sc = new Scanner(System.in);
+    System.out.println("Enter the Job ID: ");
+    int id = sc.nextInt();
+    System.out.println("Enter the Job Title: ");
+    String title = sc.next();
+    System.out.println("Enter the Job Description: ");
+    String description = sc.next();
+    System.out.println("Enter the Job Location: ");
+    String location = sc.next();
+    System.out.println("Enter the Job Salary: ");
+    int salary = sc.nextInt();
+    System.out.println("Enter the Job Company: ");
+    String company = sc.next();
+    System.out.println("Enter the Job Skills: ");
+    String skills = sc.next();
+    System.out.println("Enter the Job Experience: ");
+    String experience = sc.next();
+    System.out.println("Enter the Job Qualification: ");
+    String qualification = sc.next();
+    System.out.println("Enter the Job Posted Date: ");
+    String postedDate = sc.next();
+    System.out.println("Enter the Job Last Date: ");
+    String lastDate = sc.next();
+    System.out.println("Enter the Job Contact: ");
+    String contact = sc.next();
+    System.out.println("Enter the Job Email: ");
+    String email = sc.next();
+    System.out.println("Enter the Job Website: ");
+    String website = sc.next();
+    System.out.println("Enter the Job Status: ");
+    String status = sc.next();
+    System.out.println("Enter the Job Type: ");
+    String type = sc.next();
+    System.out.println("Enter the Job Category: ");
+    String category = sc.next();
+    System.out.println("Enter the Job Vacancy: ");
+    int vacancy = sc.nextInt();
+    System.out.println("Enter the Job Company Description: ");
+    String companyDescription = sc.next();
+    System.out.println("Enter the Job Company Address: ");
+    String companyAddress = sc.next();
+    System.out.println("Enter the Job Company Contact: ");
+    String companyContact = sc.next();
+    System.out.println("Enter the Job Company Email: ");
+    String companyEmail = sc.next();
+    System.out.println("Enter the Job Company Website: ");
+    String companyWebsite = sc.next();
+    System.out.println("Enter the Job Company Logo: ");
+    String companyLogo = sc.next();
+    System.out.println("Enter the Job Company Video: ");
+    String companyVideo = sc.next();
+    System.out.println("Enter the Job Company Map");
+    String companyMap = sc.next();
+    System.out.println("Enter the Job Company Map Address: ");
+    String companyMapAddress = sc.next();
+    System.out.println("Enter the Job Company Map Latitude: ");
+    String companyMapLatitude = sc.next();
 
     try {
-      File file = new File("file" + job.job_id + ".txt");
-      if (file.createNewFile()) {
-        FileWriter myWriter = new FileWriter("file" + job.job_id + ".txt");
-        myWriter.write("Employee ID: " + job.job_id + "\n" + "Employee Name: " + job.name + "\n" + "Father's Name: "
-            + job.father_name + "\n" + "Employee Contact: " + job.job_contact + "\n" + "Email Information: "
-            + job.job_email
-            + "\n" + "Employee Position: " + job.position + "\n" + "Employee Salary: " + job.job_salary);
-        myWriter.close();
-        System.out.println("\nEmployee has been Created: )\n");
-
-        System.out.println("\nPress Enter to Continue...");
-        sc.nextLine();
-      } else {
-        System.out.println("\nEmployee already exists.\n");
-      }
-    } catch (Exception e) {
-      System.out.println("An error occurred.");
+      File file = new File("job.txt");
+      FileWriter fw = new FileWriter(file, true);
+      fw.write(id + " " + title + " " + description + " " + location + " " + salary + " " + company + " " + skills + " "
+          + experience + " " + qualification + " " + postedDate + " " + lastDate + " " + contact + " " + email + " "
+          + website + " " + status + " " + type + " " + category + " " + vacancy + " " + companyDescription + " "
+          + companyAddress + " " + companyContact + " " + companyEmail + " " + companyWebsite + " " + companyLogo + " "
+          + companyVideo + " " + companyMap + " " + companyMapAddress + " " + companyMapLatitude + "\n");
+      fw.close();
+    } catch (IOException e) {
       e.printStackTrace();
     }
   }
-
-  private Scanner Scanner(InputStream in) {
-    return null;
-  }
-
 }
 
-/************************ To View details of the Job *********************/
+/************************ To view details of the Job *********************/
 
-public class JobDetail {
-
-  public String job_id;
-  public String name;
-  public String father_name;
-  public String job_contact;
-  public String job_email;
-  public String job_salary;
-  public String position;
-
-  public void getInfo() {
-    try (Scanner sc = new Scanner(System.in)) {
-      System.out.println("\nEnter Employee ID: ");
-      job_id = sc.nextLine();
-
-      System.out.println("\nEnter Employee Name: ");
-      name = sc.nextLine();
-
-      System.out.println("\nEnter Father's Name: ");
-      father_name = sc.nextLine();
-
-      System.out.println("\nEnter Employee Contact: ");
-      job_contact = sc.nextLine();
-
-      System.out.println("\nEnter Email Information: ");
-      job_email = sc.nextLine();
-
-      System.out.println("\nEnter Employee Position: ");
-      position = sc.nextLine();
-
-      System.out.println("\nEnter Employee Salary: ");
-      job_salary = sc.nextLine();
-    }
-  }
-
-  /************************ To Show details of Job *********************/
-
-  class JobShow {
-    public void viewFile(String s) throws Exception {
-      File file = new File("file" + s + ".txt");
-      Scanner sc = new Scanner(file);
-      while (sc.hasNextLine()) {
-        String data = sc.nextLine();
-        System.out.println(data);
+class ViewJob {
+  public void view() {
+    try {
+      File file = new File("job.txt");
+      try (Scanner sc = new Scanner(file)) {
+        while (sc.hasNextLine()) {
+          System.out.println(sc.nextLine());
+        }
       }
-      sc.close();
+    } catch (IOException e) {
+      e.printStackTrace();
     }
   }
 }
 
-/************************ To Delete details of Job *********************/
+/************************ To delete details of the Job *********************/
 
 class DeleteJob {
-  public void deleteFile(String ID) {
-    File file = new File("file" + ID + ".txt");
-    if (file.exists()) {
-      if (file.delete()) {
-        System.out.println("\nEmployee has been Deleted: )\n");
-      } else {
-        System.out.println("\nFailed to Delete Employee.\n");
+  public void delete() {
+    try {
+      File file = new File("job.txt");
+      try (Scanner sc = new Scanner(file)) {
+        while (sc.hasNextLine()) {
+          System.out.println(sc.nextLine());
+        }
       }
-    } else {
-      System.out.println("\nEmployee does not exist.\n");
+    } catch (IOException e) {
+      e.printStackTrace();
     }
   }
 }
 
-/************************ To Update details of Job *********************/
+/************************ To update details of the Job *********************/
 
 class UpdateJob {
-  public void updateFile(String s, String o, String n) throws IOException {
-    File file = new File("file" + s + ".txt");
-    try (Scanner sc = new Scanner(file)) {
-      StringBuffer inputBuffer = new StringBuffer();
-      while (sc.hasNextLine()) {
-        inputBuffer.append(sc.nextLine());
-        inputBuffer.append('\n');
+  public void update() {
+    try {
+      File file = new File("job.txt");
+      try (Scanner sc = new Scanner(file)) {
+        while (sc.hasNextLine()) {
+          System.out.println(sc.nextLine());
+        }
       }
-      FileWriter myWriter = new FileWriter("file" + s + ".txt");
-      String inputStr = inputBuffer.toString();
-      myWriter.write(inputStr.replace(o, n));
-      myWriter.close();
+    } catch (IOException e) {
+      e.printStackTrace();
     }
   }
 }
 
-/************************ To Exit details of Job *********************/
+/************************ To exit from the Job System *********************/
 
-class Exit {
+class ExitJob {
   public void exit() {
-    System.out.println("\n*****************************************");
-    System.out.println("\t\t  Thank you for Using my Application");
-    System.out.println("\t\t\t  Have a Nice Day");
-    System.out.println("\n*****************************************");
-    System.out.println("\t\t\t    ~$ Robin Benitez");
+    System.out.println("Thank you for using the Job System");
     System.exit(0);
   }
 }
 
-/***************************** Main Class *******************************/
+/************************
+ * To select the option from the menu
+ *********************/
 
-public class JobSystem {
-  public String position;
-  public String job_salary;
-  public String job_email;
-  public String father_name;
-  public String job_contact;
-  public String name;
-  public String job_id;
-
-  public static void main(String[] args) throws Exception {
+class JobSystem {
+  public static void main(String[] args) {
     try (Scanner sc = new Scanner(System.in)) {
-      MainMenu menu = new MainMenu();
-      AddJob add = new AddJob();
-      JobDetail job = new JobDetail();
-      JobDetail.JobShow show = job.new JobShow();
-      DeleteJob delete = new DeleteJob();
-      UpdateJob update = new UpdateJob();
-      Exit exit = new Exit();
-
-      while (true) {
-        menu.menu();
-        System.out.println("\n\nEnter your Choice: ");
-        int choice = sc.nextInt();
-        switch (choice) {
+      MainMenu m = new MainMenu();
+      AddJob a = new AddJob();
+      ViewJob v = new ViewJob();
+      DeleteJob d = new DeleteJob();
+      UpdateJob u = new UpdateJob();
+      ExitJob e = new ExitJob();
+      int option;
+      do {
+        m.menu();
+        System.out.println("Enter your option: ");
+        option = sc.nextInt();
+        switch (option) {
           case 1:
-            add.createFile();
+            a.add();
             break;
           case 2:
-            System.out.println("\nEnter Employee ID: ");
-            String s = sc.next();
-            show.viewFile(s);
-            System.out.println("\nPress Enter to Continue...");
-            sc.nextLine();
-            sc.nextLine();
+            v.view();
             break;
           case 3:
-            System.out.println("\nEnter Employee ID: ");
-            String ID = sc.next();
-            delete.deleteFile(ID);
-            System.out.println("\nPress Enter to Continue...");
-            sc.nextLine();
-            sc.nextLine();
+            d.delete();
             break;
           case 4:
-            System.out.println("\nEnter Employee ID: ");
-            String id = sc.next();
-            System.out.println("\nEnter Old Information: ");
-            String o = sc.next();
-            System.out.println("\nEnter New Information: ");
-            String n = sc.next();
-            update.updateFile(id, o, n);
-            System.out.println("\nPress Enter to Continue...");
-            sc.nextLine();
-            sc.nextLine();
+            u.update();
             break;
           case 5:
-            exit.exit();
+            e.exit();
             break;
           default:
-            System.out.println("\nInvalid Choice.\n");
+            System.out.println("Invalid option");
             break;
         }
-      }
+      } while (option != 5);
     }
   }
-
-  public void getInfo() {
-  }
 }
+
+/******************************** END ****************************/
