@@ -97,4 +97,20 @@ public class JobDetail {
       job_salary = sc.nextLine();
     }
   }
+
+  /************************ To Show details of Employee *********************/
+
+  class JobShow {
+    public void viewFile(String s) throws Exception {
+      File file = new File("file" + s + ".txt");
+      Scanner sc = new Scanner(file);
+      while (sc.hasNextLine()) {
+        String data = sc.nextLine();
+        System.out.println(data);
+      }
+      sc.close();
+    }
+  }
 }
+
+/************************ To Delete details of Employee *********************/
