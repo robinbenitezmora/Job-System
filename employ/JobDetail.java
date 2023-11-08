@@ -2,6 +2,7 @@ package employ;
 
 import java.io.File;
 import java.io.FileWriter;
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.Scanner;
 import employ.JobDetail;
@@ -131,3 +132,22 @@ class DeleteJob {
 }
 
 /************************ To Update details of Job *********************/
+
+class UpdateJob {
+  public void updateFile(String s, String o, String n) throws IOException {
+    File file = new File("file" + s + ".txt");
+    try (Scanner sc = new Scanner(file)) {
+      StringBuffer inputBuffer = new StringBuffer();
+      while (sc.hasNextLine()) {
+        inputBuffer.append(sc.nextLine());
+        inputBuffer.append('\n');
+      }
+      FileWriter myWriter = new FileWriter("file" + s + ".txt");
+      String inputStr = inputBuffer.toString();
+      myWriter.write(inputStr.replace(o, n));
+      myWriter.close();
+    }
+  }
+}
+
+/************************ To Exit details of Job *********************/
